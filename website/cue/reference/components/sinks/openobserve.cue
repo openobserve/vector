@@ -4,9 +4,6 @@ components: sinks: openobserve: {
 	title: "OpenObserve"
 
 	features: {
-		healthcheck: {
-			enabled: false
-		}
 		send: {
 			compression: {
 				enabled: true
@@ -27,17 +24,10 @@ components: sinks: openobserve: {
 	}
 
 	configuration: {
-		type: "http"
-		inputs: ["source_or_transform_id"]
-		uri: {
+		endpoint: {
 			description: "The OpenObserve endpoint to send data to."
 			required: true
 			type: string: default: "http://localhost:5080/api/default/default/_json"
-		}
-		method: {
-			description: "The HTTP method to use."
-			required: true
-			type: string: default: "post"
 		}
 		auth: {
 			strategy: {

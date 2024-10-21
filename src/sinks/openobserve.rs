@@ -80,6 +80,11 @@ impl SinkConfig for OpenObserveConfig {
     async fn build(&self, cx: SinkContext) -> crate::Result<(VectorSink, Healthcheck)> {
         let request = self.request.clone();
 
+        // OpenObserve supports native HTTP ingest endpoint. This configuration wraps
+        // the vector HTTP sink with the necessary adjustments to send data
+        // to OpenObserve, whilst keeping the configuration simple and easy to use
+        // and maintenance of the vector axiom sink to a minimum.
+        //
         let http_sink_config = HttpSinkConfig {
             uri: self.endpoint.clone(),
             compression: self.compression,
@@ -118,7 +123,3 @@ mod test {
         crate::test_util::test_generate_config::<super::OpenObserveConfig>();
     }
 }
-
-#[cfg(feature = "openobserve-integration-tests")]
-#[cfg(test)]
-mod integration_tests {}

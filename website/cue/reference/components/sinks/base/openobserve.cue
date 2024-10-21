@@ -301,13 +301,6 @@ base: components: sinks: openobserve: configuration: {
             }
         }
     }
-    healthcheck: {
-        enabled: {
-            description: "Enables or disables the health check."
-            required: true
-            type: bool: default: false
-        }
-    }
     tls: {
 		description: "TLS configuration."
 		required:    false
